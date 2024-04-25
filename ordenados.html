@@ -38,16 +38,28 @@ img {
   max-width: 90%;
   height: auto;
 }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  margin-left: 20px;
+}
 </style>
 </head>
 <body>
 
 <h1>Símbolos y Electrones de Valencia</h1>
 
-<img id="cardImage" src="" alt="Carta">
-
-<button onclick="showRandomImage()"><h1>Mostrar imagen al azar</h1></button>
-<button onclick="goToOrdenados()"><h1>Ordenados</h1></button>
+<div class="container">
+  <img id="cardImage" src="" alt="Carta">
+  <div>
+    <button onclick="showNextImage()"><h1>Mostrar la siguiente imagen</h1></button>
+    <button onclick="goToIndex()"><h1>Al azar</h1></button>
+  </div>
+</div>
 
 <script>
 // Tus imágenes
@@ -56,26 +68,36 @@ for (var i = 1; i <= 35; i++) {
     images.push('img_cartas/' + i + '.jpg');
 }
 
-function showRandomImage() {
-  // Escoge una imagen al azar
-  var image = images[Math.floor(Math.random() * images.length)];
+// Contador para las imágenes
+var imageCounter = 0;
+
+function showNextImage() {
+  // Si el contador es mayor que la longitud de las imágenes, reinícialo
+  if (imageCounter >= images.length) {
+    imageCounter = 0;
+  }
+
+  // Muestra la imagen en la posición del contador
+  var image = images[imageCounter];
   
   // Actualiza la imagen en la página
   document.getElementById('cardImage').src = image;
 
   // Cambia el color de fondo al color predominante de la imagen
-  // Esto es solo un ejemplo, necesitarías una biblioteca o una función para obtener el color predominante de la imagen
   document.body.style.backgroundColor = getDominantColor(image);
+
+  // Incrementa el contador
+  imageCounter++;
 }
 
 function getDominantColor(image) {
   // Esta función debería devolver el color predominante de la imagen
-  // Como es solo un ejemplo, devolveremos un color aleatorio
   return '#' + Math.floor(Math.random()*16777215).toString(16);
 }
-function goToOrdenados() {
+
+function goToIndex() {
   // Redirige al usuario a index.html
-  window.location.href = "ordenados.html";
+  window.location.href = "index.html";
 }
 </script>
 
