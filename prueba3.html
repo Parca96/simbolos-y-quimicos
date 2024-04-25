@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+    font-family: Arial, sans-serif;
+  transition: background-color 1s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+h2 {
+  color: #333;
+}
+
+button {
+  background-color: rgb(196, 25, 25);
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border: none;
+}
+
+img {
+  border-radius: 5px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 90%;
+  height: auto;
+}
+</style>
+</head>
+<body>
+
+<h1>Símbolos y Electrones de Valencia</h1>
+
+<img id="cardImage" src="" alt="Carta">
+
+<button onclick="showRandomImage()"><h1>Mostrar imagen al azar</h1></button>
+
+<script>
+// Tus imágenes
+var images = [];
+for (var i = 1; i <= 35; i++) {
+    images.push('img_cartas/' + i + '.jpg');
+}
+
+function showRandomImage() {
+  // Escoge una imagen al azar
+  var image = images[Math.floor(Math.random() * images.length)];
+  
+  // Actualiza la imagen en la página
+  document.getElementById('cardImage').src = image;
+
+  // Cambia el color de fondo al color predominante de la imagen
+  // Esto es solo un ejemplo, necesitarías una biblioteca o una función para obtener el color predominante de la imagen
+  document.body.style.backgroundColor = getDominantColor(image);
+}
+
+function getDominantColor(image) {
+  // Esta función debería devolver el color predominante de la imagen
+  // Como es solo un ejemplo, devolveremos un color aleatorio
+  return '#' + Math.floor(Math.random()*16777215).toString(16);
+}
+</script>
+
+</body>
+</html>
